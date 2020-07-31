@@ -1,15 +1,121 @@
 {
-  "name": "learn-starter",
-  "version": "0.1.0",
-  "private": true,
+  "name": "portfolio",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "format:check": "prettier --check 'src/**/*' '!**/gen/**' '!**/__snapshots__/**' '!**/.DS_Store/**' '!src/**/*.svg'",
+    "gen": "graphql-codegen --config codegen.yml",
+    "lint:check": "eslint --max-warnings 0 'src/**/*'",
+    "precommit": "lint-staged",
+    "start": "yarn; if [ \"$NODE_ENV\" = \"production\" ]; then next start; else next; fi",
+    "test": "jest"
   },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.tsx"
+    ],
+    "coverageReporters": [
+      "text"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setup.tsx"
+    ],
+    "preset": "ts-jest",
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfig.json"
+      }
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,html,yaml,yml}": [
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint"
+    ]
+  },
+  "nodemonConfig": {
+    "exec": "npx ts-node ./src/index.ts",
+    "ext": "ts,js,tsx,jsx",
+    "watch": [
+      "src"
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "tabWidth": 2
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "no-underscore-dangle": 0
+    },
+    "extends": [
+      "react-app",
+      "airbnb-typescript",
+      "prettier",
+      "plugin:@typescript-eslint/recommended"
+    ]
+  },
+  "eslintIgnore": [
+    "**/generated/**/*",
+    "**/*.json",
+    "**/*.graphql",
+    "**/*.snap",
+    "**/*.svg"
+  ],
   "dependencies": {
-    "next": "9.3.5",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "@types/jest": "^26.0.7",
+    "i18next": "^19.6.3",
+    "next": "^9.5.1",
+    "next-i18next": "^6.0.1",
+    "next-images": "^1.4.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-i18next": "^11.7.0",
+    "react-spring": "^8.0.27",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.1",
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.2.1",
+    "babel-plugin-styled-components": "^1.11.1",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-typescript": "^9.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "jest": "^26.2.1",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "react-test-renderer": "^16.13.1",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
   }
 }
