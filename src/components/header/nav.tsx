@@ -7,11 +7,8 @@ const Container = styled.div`
   grid-area: nav;
   display: none;
   grid-auto-flow: column;
-  grid-gap: ${t.paddingVertical};
-
-  .active {
-    color: ${t.colorAccent};
-  }
+  grid-gap: ${t.paddingMedium};
+  width: 100%;
 
   @media (min-width: ${t.widthPhone}) {
     display: grid;
@@ -20,10 +17,10 @@ const Container = styled.div`
 export default function Nav(): ReactElement {
   return (
     <Container>
-      <NavItem active>HOME</NavItem>
-      <NavItem>ABOUT</NavItem>
-      <NavItem>PROJECTS</NavItem>
-      <NavItem>CONTACT</NavItem>
+      <NavItem to="greeting">HOME</NavItem>
+      <NavItem to="about">ABOUT</NavItem>
+      <NavItem to="projects">PROJECTS</NavItem>
+      <NavItem to="contact">CONTACT</NavItem>
     </Container>
   );
 }

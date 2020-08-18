@@ -1,22 +1,14 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import t, { Theme } from '../../theme';
-
-function activeColor(p: { active: boolean; theme: Theme }): string {
-  return p.active ? t.colorAccent(p) : t.colorText(p);
-}
-
-const Container = styled.div`
-  justify-items: center;
-  display: grid;
-  grid-gap: ${t.gapSmall};
-`;
+import { Link } from 'react-scroll';
+import t from '../../theme';
 
 const Text = styled.h6`
-  color: ${activeColor};
   cursor: pointer;
   display: grid;
+  padding: 0;
   grid-auto-columns: min-content;
+  transition: color 100ms ease-in;
 `;
 
 const Dot = styled.div`
@@ -24,23 +16,35 @@ const Dot = styled.div`
   width: 6px;
   background-color: ${t.colorAccent};
   border-radius: 50%;
-  display: inline-block;
+  opacity: 0;
+  transition: 100ms ease-in;
+`;
+
+const Container = styled(Link)`
+  justify-items: center;
+  display: grid;
+  grid-gap: ${t.gapSmall};
+
+  &.active {
+    h6 {
+      color: ${t.colorAccent};
+    }
+    div {
+      opacity: 1;
+    }
+  }
 `;
 
 interface NavItemProps {
-  active?: boolean;
   children: string;
+  to: string;
 }
 
-export default function NavItem({ active, children }: NavItemProps): ReactElement {
+export default function NavItem({ children, to }: NavItemProps): ReactElement {
   return (
-    <Container>
-      <Text active={active}>{children}</Text>
-      {active && <Dot />}
+    <Container activeClass="active" to={to} offset={-70} duration={500} spy smooth>
+      <Text>{children}</Text>
+      <Dot />
     </Container>
   );
 }
-
-NavItem.defaultProps = {
-  active: false,
-};

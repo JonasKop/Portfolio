@@ -1,11 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import styled from 'styled-components';
-
 import { useSpring, animated } from 'react-spring';
 import Hamburger from '../../resources/illustrations/hamburger';
 import Cross from '../../resources/illustrations/cross';
 import t from '../../theme';
 import Modal from '../modal';
+import PhoneItem from './phoneItem';
 
 const Container = styled.div`
   grid-area: nav;
@@ -42,16 +42,24 @@ export default function PhoneMenu(): ReactElement {
     <Container onClick={flip}>
       {open && (
         <Modal>
-          <div style={{ color: 'white' }}>Home</div>
-          <div style={{ color: 'white' }}>About</div>
-          <div style={{ color: 'white' }}>Something</div>
-          <div style={{ color: 'white' }}>Work</div>
+          <PhoneItem to="greeting" onClick={() => setOpen(false)}>
+            Home
+          </PhoneItem>
+          <PhoneItem to="about" onClick={() => setOpen(false)}>
+            About
+          </PhoneItem>
+          <PhoneItem to="projects" onClick={() => setOpen(false)}>
+            Projects
+          </PhoneItem>
+          <PhoneItem to="contact" onClick={() => setOpen(false)}>
+            Contact
+          </PhoneItem>
         </Modal>
       )}
       <Icon style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}>
         <Hamburger />
       </Icon>
-      <Icon style={{ opacity, transform: transform.interpolate((t) => `${t} scale(1)`) }}>
+      <Icon style={{ opacity, transform: transform.interpolate((tr) => `${tr} scale(1)`) }}>
         <Cross />
       </Icon>
     </Container>

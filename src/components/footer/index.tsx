@@ -1,8 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import t from '../../theme';
-import Wave from '../../resources/illustrations/wave';
-// import Wave from '../../resources/illustrations/wave';
 
 const Wrapper = styled.footer`
   grid-area: footer;
@@ -13,7 +11,7 @@ const Wrapper = styled.footer`
 const Container = styled.div`
   z-index: ${t.zIndexFooter};
   display: grid;
-  padding: ${t.paddingVerticalLarge} 0;
+  padding: ${t.paddingLarge} 0;
   grid-gap: ${t.gapHuge} 0;
 
   grid-template-areas:
