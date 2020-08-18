@@ -22,7 +22,7 @@ const Global = createGlobalStyle`
   }
   
   section {
-    padding-bottom: 30vh;
+    padding: ${t.paddingLarge} ${t.paddingSmall};
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -30,6 +30,7 @@ const Global = createGlobalStyle`
     font-family: ${t.fontFamilyHeader};
     font-weight: ${t.fontWeightBold};
     color: ${t.colorText};
+    padding: 0 0 ${t.paddingTiny} 0;
   }
   
   h1 {
@@ -44,7 +45,10 @@ const Global = createGlobalStyle`
   }
   
   h3 {
-    font-size: ${t.fontSizeMedium};
+    font-size: ${t.fontSizeRegular};
+    @media (min-width: ${t.widthPhone}) {
+      font-size: ${t.fontSizeMedium};
+    }
   }
   
   h4 {
@@ -71,6 +75,7 @@ const Global = createGlobalStyle`
     font-size: ${t.fontSizeText};
     font-weight: ${t.fontWeightRegular};
     color: ${t.colorText};
+    padding: 0 0 ${t.paddingMicro} 0;
   }
   
   i {
@@ -201,6 +206,18 @@ const Global = createGlobalStyle`
     line-height: 1.15; /* 1 */
     margin: 0; /* 2 */
     color: ${t.colorBackground};
+  }
+  
+  input, textarea {
+    background: none;
+    border: none;
+    border-bottom: 1px solid ${t.colorAccent};
+    color: ${t.colorText};
+    padding: 10px 0;
+    ::placeholder {
+      color: ${t.colorText};
+      opacity: 0.7;
+    }
   }
   
   /**

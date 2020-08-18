@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
+
 export const appTheme = {
   color: {
     text: '#f7f7f7',
@@ -8,9 +11,11 @@ export const appTheme = {
   },
   font: {
     size: {
+      micro: '0.7rem',
       text: '1rem',
       tiny: '1.2rem',
       small: '1.8rem',
+      regular: '2.5rem',
       medium: '3rem',
       large: '4rem',
       huge: '6rem',
@@ -30,10 +35,12 @@ export const appTheme = {
     small: '40px',
   },
   padding: {
+    micro: '6px',
+    tiny: '10px',
     horizontal: '20vw',
-    verticalSmall: '25px',
-    vertical: '50px',
-    verticalLarge: '100px',
+    small: '20px',
+    medium: '40px',
+    large: '100px',
     phone: '16px',
   },
   width: {
@@ -50,63 +57,86 @@ export const appTheme = {
   },
   gap: {
     small: '5px',
-    regular: '10px',
+    regular: '14px',
+    medium: '28px',
     large: '40px',
     huge: '80px',
   },
 };
 
-export default {
-  // Colors
-  colorText: (p: Theme): string => p.theme.color.text,
-  colorBackground: (p: Theme): string => p.theme.color.background,
-  colorBackgroundLight: (p: Theme): string => p.theme.color.backgroundLight,
-  colorBackgroundMedium: (p: Theme): string => p.theme.color.backgroundMedium,
+export interface Active extends ThemeObj {
+  active: boolean;
+}
 
-  colorAccent: (p: Theme): string => p.theme.color.accent,
-  colorExtra: (p: Theme): string => p.theme.color.extra,
+const t = {
+  // Colors
+  colorText: (p: ThemeObj): string => p.theme.color.text,
+  colorBackground: (p: ThemeObj): string => p.theme.color.background,
+  colorBackgroundLight: (p: ThemeObj): string => p.theme.color.backgroundLight,
+  colorBackgroundMedium: (p: ThemeObj): string => p.theme.color.backgroundMedium,
+
+  colorAccent: (p: ThemeObj): string => p.theme.color.accent,
 
   // Fonts
-  fontSizeText: (p: Theme): string => p.theme.font.size.text,
-  fontSizeTiny: (p: Theme): string => p.theme.font.size.tiny,
-  fontSizeSmall: (p: Theme): string => p.theme.font.size.small,
-  fontSizeMedium: (p: Theme): string => p.theme.font.size.medium,
-  fontSizeLarge: (p: Theme): string => p.theme.font.size.large,
-  fontSizeHuge: (p: Theme): string => p.theme.font.size.huge,
-  fontWeightLight: (p: Theme): string => p.theme.font.weight.light,
-  fontWeightRegular: (p: Theme): string => p.theme.font.weight.regular,
-  fontWeightBold: (p: Theme): string => p.theme.font.weight.bold,
-  fontFamilyHeader: (p: Theme): string => p.theme.font.family.header,
-  fontFamilyText: (p: Theme): string => p.theme.font.family.text,
-  fontFamilyMono: (p: Theme): string => p.theme.font.family.mono,
+  fontSizeMicro: (p: ThemeObj): string => p.theme.font.size.micro,
+  fontSizeText: (p: ThemeObj): string => p.theme.font.size.text,
+  fontSizeTiny: (p: ThemeObj): string => p.theme.font.size.tiny,
+  fontSizeSmall: (p: ThemeObj): string => p.theme.font.size.small,
+  fontSizeRegular: (p: ThemeObj): string => p.theme.font.size.regular,
+  fontSizeMedium: (p: ThemeObj): string => p.theme.font.size.medium,
+  fontSizeLarge: (p: ThemeObj): string => p.theme.font.size.large,
+  fontSizeHuge: (p: ThemeObj): string => p.theme.font.size.huge,
+  fontWeightLight: (p: ThemeObj): string => p.theme.font.weight.light,
+  fontWeightRegular: (p: ThemeObj): string => p.theme.font.weight.regular,
+  fontWeightBold: (p: ThemeObj): string => p.theme.font.weight.bold,
+  fontFamilyHeader: (p: ThemeObj): string => p.theme.font.family.header,
+  fontFamilyText: (p: ThemeObj): string => p.theme.font.family.text,
+  fontFamilyMono: (p: ThemeObj): string => p.theme.font.family.mono,
 
   // Size
-  sizeSmall: (p: Theme): string => p.theme.size.small,
+  sizeSmall: (p: ThemeObj): string => p.theme.size.small,
 
   // Padding
-  paddingHorizontal: (p: Theme): string => p.theme.padding.horizontal,
-  paddingVerticalSmall: (p: Theme): string => p.theme.padding.verticalSmall,
-  paddingVertical: (p: Theme): string => p.theme.padding.vertical,
-  paddingVerticalLarge: (p: Theme): string => p.theme.padding.verticalLarge,
-  paddingPhone: (p: Theme): string => p.theme.padding.phone,
+  paddingMicro: (p: ThemeObj): string => p.theme.padding.micro,
+  paddingTiny: (p: ThemeObj): string => p.theme.padding.tiny,
+  paddingHorizontal: (p: ThemeObj): string => p.theme.padding.horizontal,
+  paddingSmall: (p: ThemeObj): string => p.theme.padding.small,
+  paddingMedium: (p: ThemeObj): string => p.theme.padding.medium,
+  paddingLarge: (p: ThemeObj): string => p.theme.padding.large,
+  paddingPhone: (p: ThemeObj): string => p.theme.padding.phone,
 
   // Width
-  widthMin: (p: Theme): string => p.theme.width.min,
-  widthMax: (p: Theme): string => p.theme.width.max,
-  widthPhone: (p: Theme): string => p.theme.width.phone,
-  widthTablet: (p: Theme): string => p.theme.width.tablet,
-  widthComputer: (p: Theme): string => p.theme.width.computer,
+  widthMin: (p: ThemeObj): string => p.theme.width.min,
+  widthMax: (p: ThemeObj): string => p.theme.width.max,
+  widthPhone: (p: ThemeObj): string => p.theme.width.phone,
+  widthTablet: (p: ThemeObj): string => p.theme.width.tablet,
+  widthComputer: (p: ThemeObj): string => p.theme.width.computer,
 
   // Z-index
-  zIndexHeader: (p: Theme): number => p.theme.zIndex.header,
-  zIndexFooter: (p: Theme): number => p.theme.zIndex.footer,
-  zIndexMain: (p: Theme): number => p.theme.zIndex.main,
+  zIndexHeader: (p: ThemeObj): number => p.theme.zIndex.header,
+  zIndexFooter: (p: ThemeObj): number => p.theme.zIndex.footer,
+  zIndexMain: (p: ThemeObj): number => p.theme.zIndex.main,
 
   // Gap size
-  gapSmall: (p: Theme): string => p.theme.gap.small,
-  gapRegular: (p: Theme): string => p.theme.gap.regular,
-  gapLarge: (p: Theme): string => p.theme.gap.large,
-  gapHuge: (p: Theme): string => p.theme.gap.huge,
+  gapSmall: (p: ThemeObj): string => p.theme.gap.small,
+  gapRegular: (p: ThemeObj): string => p.theme.gap.regular,
+  gapMedium: (p: ThemeObj): string => p.theme.gap.medium,
+  gapLarge: (p: ThemeObj): string => p.theme.gap.large,
+  gapHuge: (p: ThemeObj): string => p.theme.gap.huge,
+
+  activeColor: (p: Active): string => (p.active ? p.theme.color.accent : p.theme.color.text),
 };
 
-export type Theme = { theme: typeof appTheme };
+export default t;
+
+export type Theme = typeof appTheme;
+export type ThemeObj = { theme: Theme };
+
+export interface ActiveProps {
+  active: boolean;
+}
+
+export function useActiveColor(active: boolean): string {
+  const theme = useContext(ThemeContext);
+  return active ? t.colorAccent({ theme }) : t.colorText({ theme });
+}

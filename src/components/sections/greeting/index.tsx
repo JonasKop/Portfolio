@@ -50,11 +50,11 @@ const Image = styled.img`
 
 export default function Greeting(): ReactElement {
   return (
-    <Container>
-      <Hello>Hello, I'm </Hello>
+    <Container id="greeting">
+      {/* eslint-disable-next-line react/no-unescaped-entities */}
+      <Hello>Hello, I'm</Hello>
       <Name>Jonas Sjödin</Name>
       <Title>Software Engineer</Title>
-
       <Image style={{ gridArea: 'image' }} src="/jonas.png" alt="Jonas Sjödin" />
     </Container>
   );

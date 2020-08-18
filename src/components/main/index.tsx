@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.main`
   min-height: 100vh;
-  grid-area: header;
+  grid-area: main;
 `;
 
 interface MainProps {

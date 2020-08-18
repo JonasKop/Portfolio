@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { createPortal } from 'react-dom';
-import t, { Theme } from '../../theme';
+import t, { ThemeObj } from '../../theme';
 
 const SBackground = styled.div`
   position: fixed;
@@ -13,11 +13,11 @@ const SBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: ${(p: Theme): string => p.theme.zIndex.header - 1};
+  z-index: ${(p: ThemeObj): string => p.theme.zIndex.header - 1};
 `;
 
 interface MProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 const Modal: React.FC<MProps> = ({ children }: MProps) => {

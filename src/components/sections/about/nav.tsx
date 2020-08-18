@@ -1,45 +1,70 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import User from '../../../resources/illustrations/user';
-import Book from '../../../resources/illustrations/book';
-import Experience from '../../../resources/illustrations/experience';
-import Skills from '../../../resources/illustrations/skills';
 import t from '../../../theme';
 
 const Container = styled.div`
+  grid-area: nav;
   display: grid;
   grid-auto-flow: column;
+  align-self: end;
+  justify-self: end;
+  width: 100%;
 `;
 
 const Button = styled.button`
   cursor: pointer;
   display: grid;
-  /* border: 2px solid red; */
   grid-gap: 10px;
   justify-items: center;
+  padding: ${t.paddingTiny};
+
+  svg,
+  path {
+    fill: ${(p) => (p.active ? t.colorAccent(p) : t.colorText(p))};
+  }
+  h6 {
+    color: ${(p) => (p.active ? t.colorAccent(p) : t.colorText(p))};
+    width: 100%;
+  }
+
+  @media (min-width: ${t.widthPhone}) {
+    svg {
+      display: none;
+    }
+    h6 {
+      font-size: ${t.fontSizeText};
+      padding: 0;
+    }
+    padding: ${t.paddingSmall};
+    background: ${(p) => (p.active ? t.colorBackgroundLight(p) : t.colorBackgroundMedium(p))};
+  }
 `;
 
-const Text = styled.h6``;
+const Text = styled.h6`
+  font-size: ${t.fontSizeMicro};
+  color: ${t.activeColor};
+`;
 
-export default function Nav(): ReactElement {
+export interface NavItem {
+  title: string;
+  icon: React.FC;
+}
+
+interface NavProps {
+  items: NavItem[];
+  setActive: (name: string) => void;
+  current: NavItem;
+}
+
+export default function Nav({ items, setActive, current }: NavProps): ReactElement {
   return (
     <Container>
-      {/* <Button>
-        <Text>ABOUT</Text>
-        <User />
-      </Button>
-      <Button>
-        <Text>EDUCATION</Text>
-        <Book />
-      </Button>
-      <Button>
-        <Text>EXPERIENCE</Text>
-        <Experience />
-      </Button>
-      <Button>
-        <Text>SKILLS</Text>
-        <Skills />
-      </Button> */}
+      {items.map((e) => (
+        <Button onClick={() => setActive(e.title)} key={e.title} active={current === e}>
+          <Text>{e.title}</Text>
+          <e.icon />
+        </Button>
+      ))}
     </Container>
   );
 }

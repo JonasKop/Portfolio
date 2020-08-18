@@ -27,12 +27,8 @@ const Body = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr minmax(${t.widthMin}, ${t.widthMax}) 1fr;
-  grid-template-rows: max-content 1fr ${t.paddingVertical} max-content;
+  grid-template-rows: max-content 1fr ${t.paddingMedium} max-content;
   grid-template-areas: 'header header header' '. main .' '. . .' 'footer footer footer';
-  /* @media (max-width: ${t.widthTablet}) {
-    padding-left: ${t.widthPhone};
-    padding-right: ${t.widthPhone};
-  } */
 `;
 
 interface StylerProps {
