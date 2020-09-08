@@ -27,7 +27,7 @@ const Button = styled.button`
     width: 100%;
   }
 
-  @media (min-width: ${t.widthPhone}) {
+  @media (min-width: ${t.widthTablet}) {
     svg {
       display: none;
     }

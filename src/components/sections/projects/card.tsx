@@ -17,9 +17,9 @@ const SubTitle = styled.h6`
   color: ${t.colorAccent};
 `;
 
-const Image = styled.div`
-  width: 100%;
-  height: 220px;
+const Image = styled.img`
+  width: 300px;
+  
   background: lightgrey;
   justify-self: center;
 `;
@@ -29,7 +29,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: min-content max-content;
   grid-auto-flow: row;
-  width: 350px;
+  width: 300px;
   border-bottom: 1px solid ${t.colorAccent};
 `;
 
@@ -55,7 +55,7 @@ const LearnMoreButton = styled.a`
 export default React.memo(function Card({ content }: CardProps): ReactElement {
   return (
     <Container>
-      <Image />
+      <Image src={content.image} />
       <SubContainer>
         <SubTitle>{content.subTitle}</SubTitle>
         <h3>{content.title}</h3>

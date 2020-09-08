@@ -7,7 +7,8 @@ const Global = createGlobalStyle`
     margin: 0;
     padding: 0;
     color: ${t.colorText};
-    background-color: ${t.colorBackground};
+    //background: ${t.colorBackground};
+    background: ${t.colorBackground} url("/pattern.svg");
     transition: background-color ease-out 300ms;
     font-family: ${t.fontFamilyText};
   }

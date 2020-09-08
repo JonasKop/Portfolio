@@ -4,7 +4,11 @@ import Arrow from '../../../resources/illustrations/arrow';
 import t from '../../../theme';
 import buttonStyle from '../../button';
 
-const ArrowButton = styled.button`
+interface ArrowButtonProps {
+  visible: boolean;
+}
+
+const ArrowButton = styled.button<ArrowButtonProps>`
   padding: ${t.paddingSmall};
   ${buttonStyle};
   ${({ visible }) => (visible ? '' : 'transition: 0s;')};
@@ -17,6 +21,10 @@ const ArrowContainer = styled.div`
   grid-gap: ${t.gapRegular};
   justify-content: center;
   padding-top: ${t.paddingPhone};
+
+  @media (min-width: ${t.widthPhone}) {
+    display: none;
+  }
 `;
 
 interface NavProps {
