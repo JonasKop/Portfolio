@@ -5,7 +5,6 @@ import t from '../../../theme';
 const Container = styled.section`
   height: 100vh;
   display: grid;
-  background: ${t.colorBackground};
   justify-content: center;
   grid-gap: 10px 50px;
   align-content: end;
@@ -55,7 +54,7 @@ export default function Greeting(): ReactElement {
       <Hello>Hello, I'm</Hello>
       <Name>Jonas Sjödin</Name>
       <Title>Software Engineer</Title>
-      <Image style={{ gridArea: 'image' }} src="/jonas.png" alt="Jonas Sjödin" />
+      <Image src="/jonas.png" alt="Jonas Sjödin" />
     </Container>
   );
 }

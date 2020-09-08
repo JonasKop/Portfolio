@@ -4,28 +4,31 @@ import t from '../../../theme';
 import buttonStyle from '../../button';
 
 const Container = styled.form`
-  display: grid;
   background: ${t.colorBackgroundLight};
+  display: grid;
   width: 100%;
+  padding: ${t.paddingSmall};
+  align-items: center;
+  grid-gap: ${t.gapLarge};
   justify-items: center;
-  padding: ${t.paddingSmall} 0;
+`;
 
-  h3 {
-    padding-top: ${t.paddingMedium};
-  }
-
-  input,
-  textarea {
-    max-width: 100%;
-  }
+const Content = styled.div`
+  display: grid;
+  grid-gap: ${t.gapMedium};
 
   textarea {
     min-height: 150px;
     height: 100%;
+    resize: vertical;
   }
 
-  @media (min-width: ${t.widthPhone}) {
-    max-width: 500px;
+  @media (min-width: ${t.widthTablet}) {
+    grid-template-columns: min-content min-content;
+    input:nth-child(3),
+    textarea:nth-child(4) {
+      grid-column: 1 / span 2;
+    }
   }
 `;
 
@@ -33,21 +36,6 @@ const Button = styled.button`
   ${buttonStyle};
   width: fit-content;
   height: fit-content;
-`;
-
-const Content = styled.div`
-  display: grid;
-  grid-gap: ${t.gapMedium};
-  justify-content: center;
-  padding: ${t.paddingMedium} 0;
-
-  @media (min-width: ${t.widthPhone}) {
-    grid-template-columns: min-content min-content;
-    input:nth-child(3),
-    textarea:nth-child(4) {
-      grid-column: 1 / span 2;
-    }
-  }
 `;
 
 export default function Form(): ReactElement {

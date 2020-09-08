@@ -6,13 +6,13 @@ import content from './content';
 
 const Container = styled.div`
   background: ${t.colorBackgroundLight};
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 50px - (2 * ${t.paddingTiny}));
   display: grid;
   grid-template-rows: 1fr max-content;
   grid-template-areas: 'section' 'nav';
 
-  @media (min-width: ${t.widthPhone}) {
+  @media (min-width: ${t.widthTablet}) {
     grid-template-areas: 'nav' 'section';
     grid-template-rows: max-content 1fr;
     height: 600px;
@@ -22,20 +22,22 @@ const Container = styled.div`
 
 const Image = styled.div`
   grid-area: image;
-`;
-
-const Section = styled.section`
-  grid-area: section;
-  grid-template-rows: min-content min-content 1fr min-content;
-  grid-template-areas: 'sectionHeader' 'title' 'textBody' 'image';
-  display: grid;
-  svg {
-    max-width: 250px;
-    max-height: 150px;
-    justify-self: center;
+  * {
+    max-width: 100%;
+    max-height: 100%;
   }
 
-  @media (min-width: ${t.widthPhone}) {
+  text-align: center;
+`;
+
+const Section = styled.div`
+  grid-area: section;
+  grid-template-rows: min-content min-content min-content 1fr;
+  grid-template-areas: 'sectionHeader' 'title' 'textBody' 'image';
+  display: grid;
+  padding: ${t.paddingSmall};
+
+  @media (min-width: ${t.widthTablet}) {
     grid-template-rows: min-content min-content 1fr;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -56,6 +58,7 @@ const Section = styled.section`
 const SectionHeader = styled.h6`
   grid-area: sectionHeader;
   color: ${t.colorAccent};
+  padding-top: 20px;
 `;
 
 const SectionTitle = styled.h3`
@@ -69,7 +72,7 @@ const TextBody = styled.div`
 const navItems = content.map((e) => e.nav);
 
 export default function About(): ReactElement {
-  const [current, setCurrent] = useState(content[1]);
+  const [current, setCurrent] = useState(content[0]);
 
   function setActive(x: string) {
     setCurrent(content.filter((e) => e.nav.title === x)[0]);
@@ -85,9 +88,9 @@ export default function About(): ReactElement {
             .split('\n')
             .map((e) => e.trim())
             .filter((e) => e)
-            .map((e) => {
-              return <p key={e}>{e}</p>;
-            })}
+            .map((e) => (
+              <p key={e}>{e}</p>
+            ))}
         </TextBody>
 
         <Image>

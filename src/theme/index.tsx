@@ -47,7 +47,7 @@ export const appTheme = {
     min: '320px',
     max: '960px',
     phone: '650px',
-    tablet: '1250px',
+    tablet: '1000px',
     computer: '1600px',
   },
   zIndex: {
@@ -65,7 +65,7 @@ export const appTheme = {
 };
 
 export interface Active extends ThemeObj {
-  active: boolean;
+  active?: boolean;
 }
 
 const t = {
