@@ -38,14 +38,20 @@ export default function Nav({ active, setActive, size }: NavProps): ReactElement
     <ArrowContainer>
       <ArrowButton
         visible={active !== 0}
-        onClick={() => setActive((a: number) => (a === 0 ? a : a - 1))}
+        onClick={() => {
+          console.log('down', Math.random());
+          setActive((a: number) => (a === 0 ? a : a - 1));
+        }}
       >
         <Arrow rotate />
       </ArrowButton>
 
       <ArrowButton
         visible={active !== size - 1}
-        onClick={() => setActive((a: number) => (a + 1 === size ? a : a + 1))}
+        onClick={() => {
+          console.log('up', Math.random());
+          setActive((a: number) => (a + 1 === size ? a : a + 1));
+        }}
       >
         <Arrow rotate={false} />
       </ArrowButton>

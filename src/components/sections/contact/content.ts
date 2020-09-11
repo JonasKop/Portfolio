@@ -22,7 +22,7 @@ const content: ContentType[] = [
     title: 'Github',
     subTitle: 'Code repository',
     Icon: Github,
-    link: 'https://github.com',
+    link: 'https://github.com/JonasKop',
   },
   {
     title: 'Email',

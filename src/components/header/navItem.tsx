@@ -24,7 +24,10 @@ const Container = styled(Link)`
   justify-items: center;
   display: grid;
   grid-gap: ${t.gapSmall};
-
+  &:hover {
+  text-decoration: none;
+  }
+  
   &.active {
     h6 {
       color: ${t.colorAccent};
