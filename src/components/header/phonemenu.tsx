@@ -7,6 +7,15 @@ import t from '../../theme';
 import Modal from '../modal';
 import PhoneItem from './phoneItem';
 
+const ItemsContainer = styled.div`
+  display: grid;
+  grid-gap: ${t.gapMedium};
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  padding: ${t.paddingMedium};
+`;
+
 const Container = styled.div`
   grid-area: nav;
 
@@ -42,18 +51,20 @@ export default function PhoneMenu(): ReactElement {
     <Container onClick={flip}>
       {open && (
         <Modal>
-          <PhoneItem to="greeting" onClick={() => setOpen(false)}>
-            Home
-          </PhoneItem>
-          <PhoneItem to="about" onClick={() => setOpen(false)}>
-            About
-          </PhoneItem>
-          <PhoneItem to="projects" onClick={() => setOpen(false)}>
-            Projects
-          </PhoneItem>
-          <PhoneItem to="contact" onClick={() => setOpen(false)}>
-            Contact
-          </PhoneItem>
+          <ItemsContainer>
+            <PhoneItem to="greeting" onClick={() => setOpen(false)}>
+              Home
+            </PhoneItem>
+            <PhoneItem to="about" onClick={() => setOpen(false)}>
+              About
+            </PhoneItem>
+            <PhoneItem to="projects" onClick={() => setOpen(false)}>
+              Projects
+            </PhoneItem>
+            <PhoneItem to="contact" onClick={() => setOpen(false)}>
+              Contact
+            </PhoneItem>
+          </ItemsContainer>
         </Modal>
       )}
       <Icon style={{ opacity: opacity.interpolate((o) => 1 - o), transform }}>

@@ -6,7 +6,6 @@ import buttonStyle from '../../button';
 const Container = styled.form`
   background: ${t.colorBackgroundLight};
   display: grid;
-  width: 100%;
   padding: ${t.paddingSmall};
   align-items: center;
   grid-gap: ${t.gapLarge};
@@ -16,12 +15,12 @@ const Container = styled.form`
 const Content = styled.div`
   display: grid;
   grid-gap: ${t.gapMedium};
-
   textarea {
     min-height: 150px;
     height: 100%;
     resize: vertical;
   }
+  width: 100%;
 
   @media (min-width: ${t.widthTablet}) {
     grid-template-columns: min-content min-content;

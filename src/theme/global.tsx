@@ -210,6 +210,7 @@ const Global = createGlobalStyle`
   }
   
   input, textarea {
+    outline: none;
     background: none;
     border: none;
     border-bottom: 1px solid ${t.colorAccent};

@@ -17,7 +17,9 @@ const Button = styled.button`
   grid-gap: 10px;
   justify-items: center;
   padding: ${t.paddingTiny};
-
+  &:hover {
+    outline: none;
+  }
   svg,
   path {
     fill: ${(p) => (p.active ? t.colorAccent(p) : t.colorText(p))};

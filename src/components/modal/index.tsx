@@ -11,9 +11,7 @@ const SBackground = styled.div`
   right: 0;
   background: ${t.colorBackground};
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: ${(p: ThemeObj): string => p.theme.zIndex.header - 1};
+  z-index: ${(p: ThemeObj): number => p.theme.zIndex.header - 1};
 `;
 
 interface MProps {
@@ -22,9 +20,7 @@ interface MProps {
 
 const Modal: React.FC<MProps> = ({ children }: MProps) => {
   return createPortal(
-    <SBackground>
-      <div>{children}</div>
-    </SBackground>,
+    <SBackground>{children}</SBackground>,
     document.querySelector('#modal') as Element
   );
 };

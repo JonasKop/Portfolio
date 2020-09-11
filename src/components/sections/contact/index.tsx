@@ -5,13 +5,16 @@ import content from './content';
 import t from '../../../theme';
 import Form from './form';
 
-const Container = styled.section`
-  display: grid;
+const R = styled.section`
   justify-content: center;
-  justify-items: center;
+  display: grid;
+`;
+
+const Container = styled.div`
+  display: grid;
   grid-gap: ${t.gapLarge};
 
-  @media (min-width: ${t.widthTablet}) {
+  @media (min-width: ${t.widthPhone}) {
     grid-template-columns: max-content max-content;
   }
 `;
@@ -19,7 +22,6 @@ const Container = styled.section`
 const CardsContainer = styled.div`
   display: grid;
   grid-template-columns: min-content min-content;
-  justify-content: center;
   grid-gap: ${t.gapMedium};
   @media (min-width: ${t.widthPhone}) {
     grid-template-columns: max-content;
@@ -32,23 +34,25 @@ const SectionHeader = styled.h6`
 
 export default function Contact(): ReactElement {
   return (
-    <section id="contact">
-      <SectionHeader>CONTACT</SectionHeader>
-      <h3>Let's Talk</h3>
-      <Container>
-        <CardsContainer>
-          {content.map((e) => (
-            <Card
-              key={e.subTitle}
-              title={e.title}
-              subTitle={e.subTitle}
-              Icon={e.Icon}
-              link={e.link}
-            />
-          ))}
-        </CardsContainer>
-        <Form />
-      </Container>
-    </section>
+    <R id="contact">
+      <div>
+        <SectionHeader>CONTACT</SectionHeader>
+        <h3>Let's Talk</h3>
+        <Container>
+          <CardsContainer>
+            {content.map((e) => (
+              <Card
+                key={e.subTitle}
+                title={e.title}
+                subTitle={e.subTitle}
+                Icon={e.Icon}
+                link={e.link}
+              />
+            ))}
+          </CardsContainer>
+          <Form />
+        </Container>
+      </div>
+    </R>
   );
 }

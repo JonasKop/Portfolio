@@ -10,35 +10,39 @@ const content: ContentType[] = [
   {
     subTitle: 'Booking System',
     title: 'Ibex',
-    description: 'Doing some stuff yeah i am',
-    link: 'https://fowlit.com/work/8f5cbc15-2329-4dbb-b4b7-738fa8ea2e74',
+    description:
+      'Ibex is a booking system for an event center. It can book everything from housings to fields and integrates well with the customers accounting software. Created with React, Golang, Postgres, OIDC and Docker.',
+    link: 'https://fowlit.com/work/ibex',
     image: '/assets/ibex.jpg',
   },
   {
     subTitle: 'Conference App',
-    title: 'Datatjej Conference 2019',
-    description: 'Doing some stuff yeah i am',
-    link: 'https://fowlit.com/work/dd703f2b-088d-42d3-ada3-1e3527982f94',
+    title: 'Datatjej App',
+    description:
+      'The DataTjej app was the official app for DataTjej conference 2019. It provided schedule, information and attendance control. Created with Kotlin, Swift and NodeJS.',
+    link: 'https://fowlit.com/work/datatjej-app',
     image: '/assets/datatjej.jpg',
   },
   {
     subTitle: 'Kubernetes Dashboard',
     title: 'CK8SDash',
-    description: 'Doing some stuff',
-    link: 'https://fowlit.com/work/33af3fe7-eea3-4621-a301-5d877952f9f9',
+    description:
+      'CK8SDash is a kubernetes dashboard me and a colleague created at Elastisys. It integrates with among others Grafana, Elastic Search. Created with React and Golang.',
+    link: 'https://fowlit.com/work/compliant-kubernetes-dashboard',
     image: '/assets/elastisys.jpg',
   },
   {
     subTitle: 'Supporter System',
-    title: 'Zlingit GameDayZ',
-    description: 'Doing some stuff',
-    link: 'https://fowlit.com/work/b1b8c485-e99d-4663-af06-9402e4a42b90',
+    title: 'Zlingit',
+    description:
+      'Zlingit is a engagement driven system which enables companies to better interact with their customers. Me and a colleague made mockups for their entire system. Created with the adobe suite.',
+    link: 'https://fowlit.com/work/zlingit',
     image: '/assets/zlingit.jpg',
   },
   {
     subTitle: 'Portfolio Website',
     title: 'Portfolio',
-    description: 'Doing some stuff',
+    description: 'My portfolio is open sourced. It was made with the React server side rendering library NextJS.',
     link: 'https://github.com/JonasKop/Portfolio',
     image: '/assets/portfolio.jpg',
   },

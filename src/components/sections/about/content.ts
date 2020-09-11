@@ -26,12 +26,9 @@ const content: ContentType[] = [
     body: {
       title: 'Get to know me',
       text: `My name is Jonas Sjödin and I am a 23 year old developer. When developing I aim to provide a great user experince while keeping a performant and stable backend.
-            
-            I like to develop the whole system from writing and dockerizing an Elixir project to creating an interactive React app.
-                        
-            I am a social person who has a a very large tech interest. I follow a lot of tech blogs and the latests news. 
-            
-            I also watch a lot of football on my spare time and follow Liverpool FC as much as possible. I also like woodworking and constructing things from the ground up. .`,
+             I like to develop the whole system from writing and dockerizing an Elixir project to creating an interactive React app.
+             I am a social person who has a a very large tech interest. I follow a lot of tech blogs and the latests news. 
+             I also watch a lot of football on my spare time and follow Liverpool FC as much as possible. I also like woodworking and constructing things from the ground up. .`,
       Component: Coding,
     },
   },
