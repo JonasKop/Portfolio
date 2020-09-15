@@ -30,7 +30,7 @@ const Shadow = styled.div<ShadowProps>`
   position: absolute;
   top: 0;
   bottom: 0;
-  z-index: 400;
+  z-index: 60;
   pointer-events: none;
   ${({ left }) => (left ? 'left: 0' : 'right: 0')};
 
