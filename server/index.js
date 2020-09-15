@@ -3,15 +3,18 @@ const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const app = express();
-const port = process.env.PORT || 4000;
 const {
   EMAIL_HOST,
   EMAIL_PORT,
   EMAIL_USERNAME,
   EMAIL_PASSWORD,
   NODE_ENV,
+  PORT,
 } = process.env;
+
+const app = express();
+const port = PORT || 4000;
+
 
 if (NODE_ENV !== "production") {
   app.use(cors());

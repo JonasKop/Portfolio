@@ -1,0 +1,70 @@
+kind: pipeline
+type: docker
+name: Building
+
+steps:
+  - name: production
+    image: plugins/docker
+    settings:
+      repo: jonaskop/portfolio-server
+      target: production
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      context: ./server
+      dockerfile: ./server/Dockerfile
+      cache_from:
+        - jonaskop/portfolio-server:prod-latest
+        - jonaskop/portfolio-server:prod-${DRONE_COMMIT_BEFORE}
+      tags:
+        - prod-latest
+        - prod-${CI_COMMIT_SHA}
+
+  - name: integration
+    image: plugins/docker
+    settings:
+      repo: jonaskop/portfolio-server
+      target: integration
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      context: ./server
+      dockerfile: ./server/Dockerfile
+      cache_from:
+        - jonaskop/portfolio-server:test-latest
+        - jonaskop/portfolio-server:test-${DRONE_COMMIT_BEFORE}
+      tags:
+        - test-latest
+        - test-${CI_COMMIT_SHA}
+---
+kind: pipeline
+type: docker
+name: Testing
+
+steps:
+  - name: integ
+    image: jonaskop/portfolio-server:test-${CI_COMMIT_SHA}
+    environment:
+      HOST: cache
+    commands:
+      - cd /app
+      - until ping -c1 $HOST >/dev/null 2>&1; do echo "Attempting to connect..."; sleep 1; done
+      - yarn jest --ci
+depends_on:
+  - Building
+
+services:
+  - name: cache
+    image: jonaskop/portfolio-server:prod-${CI_COMMIT_SHA}
+    environment:
+      PORT: "80"
+      EMAIL_HOST:
+        from_secret: email_host
+      EMAIL_PORT:
+        from_secret: email_port
+      EMAIL_USERNAME:
+        from_secret: email_username
+      EMAIL_PASSWORD:
+        from_secret: email_password
