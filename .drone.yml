@@ -1,3 +1,7 @@
+##########
+# SERVER #
+##########
+
 kind: pipeline
 type: docker
 name: Building
@@ -6,58 +10,62 @@ steps:
   - name: production
     image: plugins/docker
     settings:
-      repo: jonaskop/portfolio-server
+      repo: registry.jonassjodin.com/portfolio-server
+      registry: registry.jonassjodin.com
       target: production
       username:
-        from_secret: docker_username
+        from_secret: registry_username
       password:
-        from_secret: docker_password
+        from_secret: registry_password
       context: ./server
       dockerfile: ./server/Dockerfile
       cache_from:
-        - jonaskop/portfolio-server:prod-latest
-        - jonaskop/portfolio-server:prod-${DRONE_COMMIT_BEFORE}
+        - registry.jonassjodin.com/portfolio-server:prod-${DRONE_BRANCH}
+        - registry.jonassjodin.com/portfolio-server:prod-${DRONE_COMMIT_BEFORE}
       tags:
-        - prod-latest
+        - prod-${DRONE_BRANCH}
         - prod-${CI_COMMIT_SHA}
 
   - name: integration
     image: plugins/docker
     settings:
-      repo: jonaskop/portfolio-server
+      repo: registry.jonassjodin.com/portfolio-server
+      registry: registry.jonassjodin.com
       target: integration
       username:
-        from_secret: docker_username
+        from_secret: registry_username
       password:
-        from_secret: docker_password
+        from_secret: registry_password
       context: ./server
       dockerfile: ./server/Dockerfile
       cache_from:
-        - jonaskop/portfolio-server:test-latest
-        - jonaskop/portfolio-server:test-${DRONE_COMMIT_BEFORE}
+        - registry.jonassjodin.com/portfolio-server:test-${DRONE_BRANCH}
+        - registry.jonassjodin.com/portfolio-server:test-${DRONE_COMMIT_BEFORE}
       tags:
-        - test-latest
+        - test-${DRONE_BRANCH}
         - test-${CI_COMMIT_SHA}
+image_pull_secrets:
+  - dockerconfigjson
 ---
 kind: pipeline
 type: docker
 name: Testing
 
 steps:
-  - name: integ
-    image: jonaskop/portfolio-server:test-${CI_COMMIT_SHA}
+  - name: Testing
+    image: registry.jonassjodin.com/portfolio-server:test-${CI_COMMIT_SHA}
     environment:
-      HOST: cache
+      HOST: server
     commands:
+      - env
+      - pwd
       - cd /app
       - until ping -c1 $HOST >/dev/null 2>&1; do echo "Attempting to connect..."; sleep 1; done
       - yarn jest --ci
-depends_on:
-  - Building
 
 services:
-  - name: cache
-    image: jonaskop/portfolio-server:prod-${CI_COMMIT_SHA}
+  - name: server
+    image: registry.jonassjodin.com/portfolio-server:prod-${CI_COMMIT_SHA}
     environment:
       PORT: "80"
       EMAIL_HOST:
@@ -68,3 +76,44 @@ services:
         from_secret: email_username
       EMAIL_PASSWORD:
         from_secret: email_password
+
+depends_on:
+  - Building
+image_pull_secrets:
+  - dockerconfigjson
+---
+kind: pipeline
+type: docker
+name: Pushing to prod
+
+steps:
+  - name: production
+    image: plugins/docker
+    settings:
+      repo: registry.jonassjodin.com/portfolio-server
+      registry: registry.jonassjodin.com
+      target: production
+      username:
+        from_secret: registry_username
+      password:
+        from_secret: registry_password
+      context: ./server
+      dockerfile: ./server/Dockerfile
+      cache_from:
+        - registry.jonassjodin.com/portfolio-server:prod-${CI_COMMIT_SHA}
+      tags:
+        - latest
+        - 0.0.1
+image_pull_secrets:
+  - dockerconfigjson
+          
+trigger:
+  branch:
+    - master
+depends_on:
+  - Testing
+
+##########
+# CLIENT #
+##########
+

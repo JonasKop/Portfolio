@@ -18,6 +18,6 @@ COPY test/integration ./test
 CMD ["yarn", "jest", "--ci"]
 
 # Production
-FROM unit-test as production
+FROM unit as production
 RUN yarn install --production --ignore-scripts --prefer-offline
 CMD ["yarn", "start"]
