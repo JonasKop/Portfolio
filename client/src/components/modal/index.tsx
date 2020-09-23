@@ -6,10 +6,11 @@ import t, { ThemeObj } from '../../theme';
 const SBackground = styled.div`
   position: fixed;
   top: 0;
-  bottom: 0;
+  height: 105vh;
   left: 0;
   right: 0;
   background: ${t.colorBackground};
+  transform: translate3d(0, 0, 0);
   display: flex;
   z-index: ${(p: ThemeObj): number => p.theme.zIndex.header - 1};
 `;
