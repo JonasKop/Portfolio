@@ -8,6 +8,7 @@ const {
   EMAIL_PORT,
   EMAIL_USERNAME,
   EMAIL_PASSWORD,
+  EMAIL_TO,
   NODE_ENV,
   PORT,
 } = process.env;
@@ -20,7 +21,7 @@ if (NODE_ENV !== "production") {
   app.use(cors());
 }
 
-if (!EMAIL_HOST || !EMAIL_PORT || !EMAIL_USERNAME || !EMAIL_PASSWORD) {
+if (!EMAIL_HOST || !EMAIL_PORT || !EMAIL_USERNAME || !EMAIL_PASSWORD || !EMAIL_TO) {
   throw new Error("All email environment variables must be set");
 }
 
@@ -47,7 +48,7 @@ app.post("/email", async (req, res) => {
   await transport.sendMail(
     {
       from: req.body.from,
-      to: EMAIL_USERNAME,
+      to: EMAIL_TO,
       subject: `Incoming email from: ${req.body.firstName} ${req.body.lastName}`,
       text: req.body.text,
     },
