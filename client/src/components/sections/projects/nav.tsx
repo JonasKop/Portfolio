@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import Arrow from '../../../resources/illustrations/arrow';
+import Arrow from '../../../resources/illustrations/arrow.svg';
 import t from '../../../theme';
 import buttonStyle from '../../button';
 
@@ -40,14 +40,14 @@ export default function Nav({ active, setActive, size }: NavProps): ReactElement
         visible={active !== 0}
         onClick={() => setActive((a: number) => (a === 0 ? a : a - 1))}
       >
-        <Arrow rotate />
+        <Arrow transform="scale(-1, 1)" />
       </ArrowButton>
 
       <ArrowButton
         visible={active !== size - 1}
         onClick={() => setActive((a: number) => (a + 1 === size ? a : a + 1))}
       >
-        <Arrow rotate={false} />
+        <Arrow />
       </ArrowButton>
     </ArrowContainer>
   );

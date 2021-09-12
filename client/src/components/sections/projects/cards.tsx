@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import content from './content';
-import Card from './card';
 import t from '../../../theme';
+import Card from './card';
+import content from './content';
 import useScrollableShadows from './scrollable-shadows';
 
 const Container = styled.div`

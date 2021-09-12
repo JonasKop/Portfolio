@@ -1,8 +1,7 @@
 #!/bin/bash
 
-TAG=portfolio-server
+TAG=ghcr.io/jonaskop/portfolio/server:latest
 
-export COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
 docker build -t $TAG .
 
 

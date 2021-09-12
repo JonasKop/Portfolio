@@ -1,13 +1,11 @@
-import React, { ReactChild, ReactElement } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
 import App from 'next/app';
 import Head from 'next/head';
-
-import Metadata from '../components/metadata';
+import React, { ReactChild, ReactElement } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 import Footer from '../components/footer';
-import Main from '../components/main';
 import Header from '../components/header';
-
+import Main from '../components/main';
+import Metadata from '../components/metadata';
 import t, { appTheme } from '../theme';
 import Global from '../theme/global';
 
