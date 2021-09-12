@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import Logo from '../../resources/illustrations/logo.svg';
 import t from '../../theme';
-import Logo from '../../resources/illustrations/logo';
-import PhoneMenu from './phonemenu';
 import Nav from './nav';
+import PhoneMenu from './phonemenu';
 
 const Container = styled.header`
   grid-area: header;

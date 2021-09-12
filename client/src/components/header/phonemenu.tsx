@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from 'react';
+import { animated, useSpring } from 'react-spring';
 import styled from 'styled-components';
-import { useSpring, animated } from 'react-spring';
-import Hamburger from '../../resources/illustrations/hamburger';
-import Cross from '../../resources/illustrations/cross';
+import Cross from '../../resources/illustrations/cross.svg';
+import Hamburger from '../../resources/illustrations/hamburger.svg';
 import t from '../../theme';
 import Modal from '../modal';
 import PhoneItem from './phoneItem';
@@ -67,10 +67,10 @@ export default function PhoneMenu(): ReactElement {
           </ItemsContainer>
         </Modal>
       )}
-      <Icon style={{ opacity: opacity.interpolate((o) => 1 - (o as number)), transform }}>
+      <Icon style={{ opacity: opacity.to((o) => 1 - (o as number)), transform }}>
         <Hamburger />
       </Icon>
-      <Icon style={{ opacity, transform: transform.interpolate((tr) => `${tr} scale(1)`) }}>
+      <Icon style={{ opacity, transform: transform.to((tr) => `${tr} scale(1)`) }}>
         <Cross />
       </Icon>
     </Container>

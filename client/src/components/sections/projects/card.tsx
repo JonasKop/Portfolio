@@ -52,8 +52,8 @@ const LearnMoreButton = styled.a`
   ${buttonStyle}
 `;
 
-export default React.memo(function Card({ content }: CardProps): ReactElement {
-  return (
+export default React.memo(
+  ({ content }: CardProps): ReactElement => (
     <Container>
       <Image src={content.image} />
       <SubContainer>
@@ -63,5 +63,5 @@ export default React.memo(function Card({ content }: CardProps): ReactElement {
         <LearnMoreButton href={content.link}>LEARN MORE</LearnMoreButton>
       </SubContainer>
     </Container>
-  );
-});
+  )
+);

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import React from 'react';
 import { createPortal } from 'react-dom';
+import styled from 'styled-components';
 import t, { ThemeObj } from '../../theme';
 
 const SBackground = styled.div`
@@ -19,11 +19,7 @@ interface MProps {
   children: React.ReactNode;
 }
 
-const Modal: React.FC<MProps> = ({ children }: MProps) => {
-  return createPortal(
-    <SBackground>{children}</SBackground>,
-    document.querySelector('#modal') as Element
-  );
-};
+const Modal: React.FC<MProps> = ({ children }: MProps) =>
+  createPortal(<SBackground>{children}</SBackground>, document.querySelector('#modal') as Element);
 
 export default Modal;

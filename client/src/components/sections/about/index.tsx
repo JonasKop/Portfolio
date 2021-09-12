@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import t from '../../../theme';
-import Nav from './nav';
 import content from './content';
+import Nav from './nav';
 
 const Container = styled.div`
   background: ${t.colorBackgroundLight};
@@ -74,9 +74,9 @@ const navItems = content.map((e) => e.nav);
 export default function About(): ReactElement {
   const [current, setCurrent] = useState(content[0]);
 
-  function setActive(x: string) {
+  const setActive = (x: string) => {
     setCurrent(content.filter((e) => e.nav.title === x)[0]);
-  }
+  };
 
   return (
     <Container id="about">

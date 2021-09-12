@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { ContentType } from './content';
 import t from '../../../theme';
 import buttonStyle from '../../button';
+import { ContentType } from './content';
 
 const Container = styled.a`
   ${buttonStyle};

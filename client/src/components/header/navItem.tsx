@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-scroll';
+import styled from 'styled-components';
 import t from '../../theme';
 
 const Text = styled.h6`

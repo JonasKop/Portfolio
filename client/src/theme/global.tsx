@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-
 import t from './index';
 
 const Global = createGlobalStyle`
@@ -7,12 +6,11 @@ const Global = createGlobalStyle`
     margin: 0;
     padding: 0;
     color: ${t.colorText};
-    //background: ${t.colorBackground};
     background: ${t.colorBackground} url("/pattern.svg");
     background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     transition: background-color ease-out 300ms;
     font-family: ${t.fontFamilyText};
   }

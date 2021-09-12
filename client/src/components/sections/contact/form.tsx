@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
-import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
 import t from '../../../theme';
 import buttonStyle from '../../button';
 
@@ -84,10 +84,10 @@ export default function Form(): ReactElement {
       <h3>Get in Touch</h3>
       {!isSent && (
         <Content>
-          <input name="firstName" ref={register({ required: true })} placeholder="First Name" />
-          <input name="lastName" ref={register({ required: true })} placeholder="Last Name" />
-          <input name="from" ref={register({ required: true })} placeholder="Your Email Address" />
-          <textarea name="text" ref={register({ required: true })} placeholder="Your Message" />
+          <input {...register('firstName', { required: true })} placeholder="First Name" />
+          <input {...register('lastName', { required: true })} placeholder="Last Name" />
+          <input {...register('from', { required: true })} placeholder="Your Email Address" />
+          <textarea {...register('text', { required: true })} placeholder="Your Message" />
         </Content>
       )}
       {!isSent && <Button type="submit">SEND MESSAGE</Button>}

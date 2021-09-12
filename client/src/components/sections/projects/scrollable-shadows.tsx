@@ -17,11 +17,6 @@ export default function useScrollableShadows(): UseScrollableShadowsType {
   const rightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (leftRef.current) leftRef.current.style.width = '0px';
-    if (rightRef.current) rightRef.current.style.width = `${calcWidth(100)}px`;
-  }, []);
-
-  useEffect(() => {
     cardsRef.current?.addEventListener('scroll', () => {
       if (cardsRef.current) {
         const { scrollLeft, scrollWidth, clientWidth } = cardsRef.current;
@@ -31,6 +26,10 @@ export default function useScrollableShadows(): UseScrollableShadowsType {
         if (rightRef.current) rightRef.current.style.width = `${rightOffset}px`;
       }
     });
-  }, [cardsRef]);
+
+    if (leftRef.current) leftRef.current.style.width = '0px';
+    if (rightRef.current) rightRef.current.style.width = `${calcWidth(100)}px`;
+  }, []);
+
   return { leftRef, rightRef, cardsRef };
 }

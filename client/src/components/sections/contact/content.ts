@@ -1,8 +1,8 @@
 import React from 'react';
-import Linkedin from '../../../resources/illustrations/linkedin';
-import Github from '../../../resources/illustrations/github';
-import Email from '../../../resources/illustrations/email';
-import Phone from '../../../resources/illustrations/phone';
+import Email from '../../../resources/illustrations/email.svg';
+import Github from '../../../resources/illustrations/github.svg';
+import Linkedin from '../../../resources/illustrations/linkedin.svg';
+import Phone from '../../../resources/illustrations/phone.svg';
 
 export interface ContentType {
   title: string;
@@ -16,7 +16,7 @@ const content: ContentType[] = [
     title: 'LinkedIn',
     subTitle: 'Business profile',
     Icon: Linkedin,
-    link: 'https://linkedin.com',
+    link: 'https://www.linkedin.com/in/jonas-sjodin/',
   },
   {
     title: 'Github',
@@ -28,7 +28,7 @@ const content: ContentType[] = [
     title: 'Email',
     subTitle: 'jonas@jonassjodin.com',
     Icon: Email,
-    link: 'mailto://jonas@jonassjodin.com',
+    link: 'mailto:jonas@jonassjodin.com',
   },
   {
     title: 'Phone',

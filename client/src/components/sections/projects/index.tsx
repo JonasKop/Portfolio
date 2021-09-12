@@ -2,9 +2,9 @@ import React, { ReactElement, useState } from 'react';
 import styled from 'styled-components';
 import t from '../../../theme';
 import Card from './card';
-import Nav from './nav';
-import content from './content';
 import Cards from './cards';
+import content from './content';
+import Nav from './nav';
 
 const SectionHeader = styled.h6`
   color: ${t.colorAccent};

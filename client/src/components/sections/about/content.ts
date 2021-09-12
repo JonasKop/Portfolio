@@ -1,21 +1,20 @@
 import React from 'react';
-import Stats from './stats';
+import Book from '../../../resources/illustrations/book.svg';
+import Coding from '../../../resources/illustrations/coding.svg';
+import Exams from '../../../resources/illustrations/exams.svg';
+import Experience from '../../../resources/illustrations/experience.svg';
+import Skills from '../../../resources/illustrations/skills.svg';
+import User from '../../../resources/illustrations/user.svg';
+import WorkTime from '../../../resources/illustrations/worktime.svg';
 import { NavItem } from './nav';
-import User from '../../../resources/illustrations/user';
-import Coding from '../../../resources/illustrations/coding';
-import Book from '../../../resources/illustrations/book';
-import Exams from '../../../resources/illustrations/exams';
-import Experience from '../../../resources/illustrations/experience';
-import WorkTime from '../../../resources/illustrations/worktime';
-import Skills from '../../../resources/illustrations/skills';
-import { Stylable } from '../../../resources/values';
+import Stats from './stats';
 
 export interface ContentType {
   nav: NavItem;
   body: {
     title: string;
     text: string;
-    Component: React.FC<Stylable>;
+    Component: React.FC;
   };
 }
 

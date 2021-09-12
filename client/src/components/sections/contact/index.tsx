@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import t from '../../../theme';
 import Card from './card';
 import content from './content';
-import t from '../../../theme';
 import Form from './form';
 
 const R = styled.section`
@@ -37,7 +37,6 @@ export default function Contact(): ReactElement {
     <R id="contact">
       <div>
         <SectionHeader>CONTACT</SectionHeader>
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
         <h3>Let's Talk</h3>
         <Container>
           <CardsContainer>
